@@ -4,7 +4,7 @@ class ShareController < ApplicationController
   end
 
   # Example : /share/janjipolitik/9fb657c1-59a6-4ccd-9eae-d15c94fa5c53
-  # Redirect to : {{Domain}}/linimasa/detail/9fb657c1-59a6-4ccd-9eae-d15c94fa5c53
+  # Redirect to : {{Domain}}/share/janjipolitik/9fb657c1-59a6-4ccd-9eae-d15c94fa5c53
   # janjipolitik
   # Title : Pantau Bersama - Janji Politik - {{JudulJanPol}}
   # Description : {{JudulJanPol}} - {{DeskripsiJanpol}}
@@ -17,7 +17,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Janji Politik -", record["title"]].join(" ")
     @description = [record["title"], record["body"]].join(" - ")
     @image = record["image"]["url"] || default_image
-    @redirect_to = web_url("/linimasa/detail/" + params[:id])
+    @redirect_to = web_url("/share/janjipolitik/" + params[:id])
 
     set_meta_tags_for_record
   end
