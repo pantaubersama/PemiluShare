@@ -3,8 +3,8 @@ class ShareController < ApplicationController
     
   end
 
-  # Example : /share/janjipolitik/ffd2de0c-bf3b-4a64-bef8-4732428b05c1
-  # Redirect to : {{Domain}}/linimasa/detail/ffd2de0c-bf3b-4a64-bef8-4732428b05c1
+  # Example : /share/janjipolitik/9fb657c1-59a6-4ccd-9eae-d15c94fa5c53
+  # Redirect to : {{Domain}}/linimasa/detail/9fb657c1-59a6-4ccd-9eae-d15c94fa5c53
   # janjipolitik
   # Title : Pantau Bersama - Janji Politik - {{JudulJanPol}}
   # Description : {{JudulJanPol}} - {{DeskripsiJanpol}}
