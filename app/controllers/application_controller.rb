@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_image
-    "https://pantaubersama.com/wp-content/uploads/2019/01/fav.png"
+    "https://pantaubersama.com/wp-content/uploads/2019/02/no-alpha.jpg"
   end
 end
