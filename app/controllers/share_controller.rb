@@ -4,6 +4,7 @@ class ShareController < ApplicationController
   end
 
   # Example : /share/janjipolitik/ffd2de0c-bf3b-4a64-bef8-4732428b05c1
+  # Redirect to : {{Domain}}/linimasa/detail/ffd2de0c-bf3b-4a64-bef8-4732428b05c1
   # janjipolitik
   # Title : Pantau Bersama - Janji Politik - {{JudulJanPol}}
   # Description : {{JudulJanPol}} - {{DeskripsiJanpol}}
@@ -16,11 +17,13 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Janji Politik -", record["title"]].join(" ")
     @description = [record["title"], record["body"]].join(" - ")
     @image = record["image"]["url"] || default_image
+    @redirect_to = web_url("/linimasa/detail/" + params[:id])
 
     set_meta_tags_for_record
   end
 
-  # /share/tanya/2c0896fe-826c-46d2-8a01-6a1974469d85
+  # Example : /share/tanya/2c0896fe-826c-46d2-8a01-6a1974469d85
+  # Redirect to : {{Domain}}/pendidikan-politik/detail/2c0896fe-826c-46d2-8a01-6a1974469d85
   # tanya
   # Title : Pantau Bersama - Tanya Kandidat oleh {{NamaLengkap}}
   # Description : {{NamaLengkap}} bertanya : {{Pertanyaan}}. Lihat yuk!
@@ -33,11 +36,13 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Tanya Kandidat oleh", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "bertanya :", record["body"] + ".", "Lihat yuk!"].join(" ")
     @image = default_image
+    @redirect_to = web_url("/pendidikan-politik/detail/" + params[:id])
 
     set_meta_tags_for_record
   end
 
   # Example : /share/kuis/fdcc3f8a-9f04-4a9c-b57c-6cdec01e710f
+  # Redirect to : {{Domain}}/share/kuis/fdcc3f8a-9f04-4a9c-b57c-6cdec01e710f
   # kuis
   # Title : Pantau Bersama - Kuis - {{JudulKuis}}
   # Description : {JudulKuis} - {{DeskripsiKuis}}
@@ -50,11 +55,13 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Kuis -", record["title"]].join(" ")
     @description = [record["title"], record["description"]].join(" - ")
     @image = record["image"]["url"] || default_image
+    @redirect_to = web_url("/share/kuis/" + params[:id])
 
     set_meta_tags_for_record
   end
 
   # Example : /share/hasilkuis/9350ee89-5f6e-4085-ae96-49fe0236f5fb
+  # Redirect to : {{Domain}}/share/hasilkuis/9350ee89-5f6e-4085-ae96-49fe0236f5fb
   # hasilkuis
   # Title : Pantau Bersama - Hasil Kuis {{JudulKuis}} dari {{NamaLengkap}}
   # Description : {{NamaLengkap}} telah mengikuti kuis {{JudulKuis}}. Lihat hasil Kuisnya yuk!
@@ -67,11 +74,13 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Hasil Kuis", record["quiz"]["title"], "dari", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "telah mengikuti kuis", record["quiz"]["title"] + ".", "Lihat hasil Kuisnya yuk!"].join(" ")
     @image = record["quiz_participation"]["image_result"]["url"] || default_image
+    @redirect_to = web_url("/share/hasilkuis/" + params[:id])
 
     set_meta_tags_for_record
   end
 
   # Example : /share/kecenderungan/c9242c5a-805b-4ef5-b3a7-2a7f25785cc8
+  # Redirect to : {{Domain}}/share/kecenderungan/9350ee89-5f6e-4085-ae96-49fe0236f5fb
   # kecenderungan
   # Title : Pantau Bersama - Kecenderungan dari {{NamaLengkap}}
   # Description : {{NamaLengkap}} lebih suka jawaban dari {{NamaPaslon}}
@@ -101,11 +110,13 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Kecenderungan", "dari", record["user"]["full_name"]].join(" ")
     @description = text
     @image = record["quiz_preference"]["image_result"]["url"] || default_image
+    @redirect_to = web_url("/share/kecenderungan/" + params[:id])
 
     set_meta_tags_for_record
   end
   
-  # Example : /share/badge/ff46f064-3f5a-421d-be6a-3e6b2314ae7e 
+  # Example : /share/badge/ff46f064-3f5a-421d-be6a-3e6b2314ae7e
+  # Redirect to : {{Domain}}/profile/badge/9350ee89-5f6e-4085-ae96-49fe0236f5fb
   # badge
   # Title : Pantau Bersama - Badge {{NamaBadge}} didapatkan oleh {{NamaLengkap}}
   # Description : Yunan Helmy telah mendapatkan badge {{NamaBadge}}. Lihat yuk!
@@ -118,6 +129,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Badge", record["badge"]["name"],  "didapatkan oleh", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "telah mendapatkan badge", record["badge"]["name"] + ".", "Lihat yuk!"].join(" ")
     @image = record["image_result"]["url"] || default_image
+    @redirect_to = web_url("/profile/badge/" + params[:id])
 
     set_meta_tags_for_record
   end
@@ -141,4 +153,9 @@ class ShareController < ApplicationController
         }
       }
   end
+
+  private
+    def web_url endpoint
+      ENV["WEB_DOMAIN"] + endpoint
+    end
 end
