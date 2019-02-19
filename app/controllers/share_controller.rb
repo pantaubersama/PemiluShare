@@ -55,7 +55,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Kuis -", record["title"]].join(" ")
     @description = [record["title"], record["description"]].join(" - ")
     @image = record["image"]["url"] || default_image
-    @redirect_to = web_url("/pendidikan-politik/quiz/ikuti/" + params[:id])
+    @redirect_to = web_url("/share/kuis/" + params[:id])
 
     set_meta_tags_for_record
   end
@@ -74,7 +74,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Hasil Kuis", record["quiz"]["title"], "dari", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "telah mengikuti kuis", record["quiz"]["title"] + ".", "Lihat hasil Kuisnya yuk!"].join(" ")
     @image = record["quiz_participation"]["image_result"]["url"] || default_image
-    @redirect_to = web_url("/pendidikan-politik/quiz/hasil/" + params[:id])
+    @redirect_to = web_url("/share/hasilkuis/" + params[:id])
 
     set_meta_tags_for_record
   end
