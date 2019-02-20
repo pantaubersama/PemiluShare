@@ -116,7 +116,7 @@ class ShareController < ApplicationController
   end
   
   # Example : /share/badge/ff46f064-3f5a-421d-be6a-3e6b2314ae7e
-  # Redirect to : {{Domain}}/profile/badge/9350ee89-5f6e-4085-ae96-49fe0236f5fb
+  # Redirect to : {{Domain}}/share/badge/ff46f064-3f5a-421d-be6a-3e6b2314ae7e
   # badge
   # Title : Pantau Bersama - Badge {{NamaBadge}} didapatkan oleh {{NamaLengkap}}
   # Description : Yunan Helmy telah mendapatkan badge {{NamaBadge}}. Lihat yuk!
