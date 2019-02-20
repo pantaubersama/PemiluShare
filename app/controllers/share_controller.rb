@@ -23,7 +23,7 @@ class ShareController < ApplicationController
   end
 
   # Example : /share/tanya/2c0896fe-826c-46d2-8a01-6a1974469d85
-  # Redirect to : {{Domain}}/pendidikan-politik/detail/2c0896fe-826c-46d2-8a01-6a1974469d85
+  # Redirect to : {{Domain}}/share/tanya/2c0896fe-826c-46d2-8a01-6a1974469d85
   # tanya
   # Title : Pantau Bersama - Tanya Kandidat oleh {{NamaLengkap}}
   # Description : {{NamaLengkap}} bertanya : {{Pertanyaan}}. Lihat yuk!
@@ -36,7 +36,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Tanya Kandidat oleh", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "bertanya :", record["body"] + ".", "Lihat yuk!"].join(" ")
     @image = default_image
-    @redirect_to = web_url("/pendidikan-politik/detail/" + params[:id])
+    @redirect_to = web_url("/share/tanya/" + params[:id])
 
     set_meta_tags_for_record
   end
@@ -129,7 +129,7 @@ class ShareController < ApplicationController
     @title = ["Pantau Bersama - Badge", record["badge"]["name"],  "didapatkan oleh", record["user"]["full_name"]].join(" ")
     @description = [record["user"]["full_name"], "telah mendapatkan badge", record["badge"]["name"] + ".", "Lihat yuk!"].join(" ")
     @image = record["image_result"]["url"] || default_image
-    @redirect_to = web_url("/profile/badge/" + params[:id])
+    @redirect_to = web_url("/share/badge/" + params[:id])
 
     set_meta_tags_for_record
   end
