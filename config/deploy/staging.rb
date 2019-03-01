@@ -1,4 +1,4 @@
-append :linked_files, ".ruby-version", ".env.staging", "config/master.key", "public/apple-app-site-association.json"
+append :linked_files, ".ruby-version", ".env.staging", "config/master.key", "public/apple-app-site-association.json", "public/apple-app-site-association"
 
 set :rvm_type, :auto
 set :rvm_ruby_version, 'ruby-2.5.3'
