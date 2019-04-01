@@ -134,6 +134,28 @@ class ShareController < ApplicationController
     set_meta_tags_for_record
   end
 
+  def wordstadium
+    url = "/word_stadium/v1/challenges/" + params[:id]
+    record = HTTParty.get(ENV["WORDSTADIUM_API_URL"] + url)
+      .parsed_response["data"]["challenge"]
+
+    challenger = record["audiences"].select{|x| x["role"] == "challenger"}.last["full_name"]
+    opponent = record["audiences"].select{|x| x["role"] == "opponent"}.last["full_name"]
+
+    if record["type"] == "OpenChallenge"
+      @title = ["Pantau Bersama - Wordstadium ", challenger, "membuat", record["type"].underscore.humanize].join(" ")
+      @description = ["Pantau Bersama - Wordstadium ", challenger, "membuat", record["type"].underscore.humanize + ".", "Ayo terima tantangannya!"].join(" ")
+    else
+      @title = ["Pantau Bersama - Wordstadium ", challenger, "membuat", record["type"].underscore.humanize, "untuk", opponent + "."].join(" ")
+      @description = ["Pantau Bersama - Wordstadium ", challenger, "membuat", record["type"].underscore.humanize, "untuk", opponent + ".", "Tonton yuk!"].join(" ")
+    end
+
+    @image = default_image
+    @redirect_to = web_url("/wordstadium/" + params[:id] + "?type=" + record["type"].underscore)
+
+    set_meta_tags_for_record
+  end
+
   def set_meta_tags_for_record
     set_meta_tags type: "website",
       title: @title,
